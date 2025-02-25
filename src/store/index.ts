@@ -1,6 +1,4 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit"
-import AddToDo from "../components/AddToDo"
-import { TypedUseSelectorHook, useSelector } from "react-redux"
 
 const initialState = ["Beber água", "Lavar roupa"]
 

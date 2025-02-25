@@ -8,7 +8,7 @@ function App() {
   return (
     <Provider store={store}>
       <ToDoList />
-      <AddToDo/>
+      <AddToDo />
     </Provider>
   )
 }

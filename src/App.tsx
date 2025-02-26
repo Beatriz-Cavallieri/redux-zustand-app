@@ -1,16 +1,14 @@
-import { Provider } from "react-redux"
-import { store } from "./store"
-import ToDoList from "./components/ToDoList"
-import AddToDo from "./components/AddToDo"
 import './styles/global.css'
+import { Provider as StoreProvider } from "react-redux"
+import { store } from "./store"
+import Player from "./pages/Player"
 
 function App() {
 
   return (
-      <Provider store={store}>
-        <ToDoList />
-        <AddToDo />
-      </Provider>
+    <StoreProvider store={store}>
+      <Player />
+    </StoreProvider>
   )
 }
 

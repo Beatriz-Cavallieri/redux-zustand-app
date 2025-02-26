@@ -36,9 +36,21 @@ const playerSlice = createSlice({
     play: (state, action) => {
       state.currentModule = action.payload[0]
       state.currentLesson = action.payload[1]
+    },
+    next: (state) => {
+      const nextLesson = state.currentLesson + 1
+      if (state.modules[state.currentModule].lessons[nextLesson]) {
+        state.currentLesson = nextLesson
+      } else {
+        const nextModule = state.currentModule + 1
+        if (state.modules[nextModule]) {
+          state.currentModule = nextModule
+          state.currentLesson = 0
+        }
+      }
     }
   }
 })
 
 export const player = playerSlice.reducer
-export const { play } = playerSlice.actions
+export const { play, next } = playerSlice.actions

@@ -1,8 +1,11 @@
 import ReactPlayer from "react-player"
 import { useAppSelector } from "../../store/hooks"
+import { useDispatch } from "react-redux"
+import { next } from "../../store/slices/player"
 
 const Video = () => {
     const { modules, currentLesson, currentModule } = useAppSelector(state => state.player)
+    const dispatch = useDispatch()
 
     const id = modules[currentModule].lessons[currentLesson].id
 
@@ -14,6 +17,7 @@ const Video = () => {
                     height="100%"
                     controls
                     url={`https://www.youtube.com/watch?v=${id}`}
+                    onEnded={() => dispatch(next())}
                 />
             </div>
         </div>

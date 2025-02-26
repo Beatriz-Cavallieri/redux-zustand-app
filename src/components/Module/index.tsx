@@ -13,6 +13,7 @@ interface ModuleProps {
 
 const Module = ({ moduleIndex, title, amountOfLessons }: ModuleProps) => {
     const lessons = useAppSelector(state => state.player.modules[moduleIndex].lessons)
+    const { currentLesson, currentModule } = useAppSelector(state => state.player)
 
     const dispatch = useDispatch()
 
@@ -39,9 +40,10 @@ const Module = ({ moduleIndex, title, amountOfLessons }: ModuleProps) => {
                     {lessons.map((lesson, index) => (
                         <Lesson
                             key={index}
-                            title={lesson.title} 
+                            title={lesson.title}
                             duration={lesson.duration}
-                            onPlay={() => onPlay(index)} />
+                            onPlay={() => onPlay(index)}
+                            isCurrent={moduleIndex == currentModule && index == currentLesson} />
                     )
                     )}
                 </nav>

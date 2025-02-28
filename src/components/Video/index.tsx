@@ -1,10 +1,9 @@
 import ReactPlayer from "react-player"
-import { useCurrentLesson } from "../../store/hooks"
-import { useDispatch } from "react-redux"
+import { useAppDispatch, useCurrentLesson } from "../../store/hooks"
 import { next } from "../../store/slices/player"
 
 const Video = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const { currentLesson } = useCurrentLesson()
 
     if (!currentLesson) return null

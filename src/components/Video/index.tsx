@@ -1,13 +1,11 @@
 import ReactPlayer from "react-player"
-import { useAppSelector } from "../../store/hooks"
+import { useCurrentLesson } from "../../store/hooks"
 import { useDispatch } from "react-redux"
 import { next } from "../../store/slices/player"
 
 const Video = () => {
-    const { course, currentLessonIndex, currentModuleIndex } = useAppSelector(state => state.player)
     const dispatch = useDispatch()
-
-    const id = course?.modules[currentModuleIndex].lessons[currentLessonIndex].id
+    const { currentLesson } = useCurrentLesson()
 
     return (
         <div className="flex-1">
@@ -16,7 +14,7 @@ const Video = () => {
                     width="100%"
                     height="100%"
                     controls
-                    url={`https://www.youtube.com/watch?v=${id}`}
+                    url={currentLesson && `https://www.youtube.com/watch?v=${currentLesson.id}`}
                     onEnded={() => dispatch(next())}
                 />
             </div>

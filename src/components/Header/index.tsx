@@ -1,11 +1,12 @@
-import { useCurrentLesson } from "../../store/hooks"
+import { useAppSelector, useCurrentLesson } from "../../store/hooks"
 
 const Header = () => {
-    const {currentLesson, currentModule} = useCurrentLesson()
+    const { currentLesson, currentModule } = useCurrentLesson()
+    const isCourseLoading = useAppSelector(state => state.player.isLoading)
 
-    if (!currentModule || !currentLesson) {
-        return null
-      }
+    if (isCourseLoading) {
+        return <h1 className="text-2xl font-bold">Carregando...</h1>
+    }
 
     return (
         <div className="flex flex-col gap-1">

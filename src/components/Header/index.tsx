@@ -1,9 +1,12 @@
 import { useAppSelector } from "../../store/hooks"
 
 const Header = () => {
-    const { modules, currentLesson, currentModule } = useAppSelector(state => state.player)
-    const moduleTitle = modules[currentModule].title
-    const lessonTitle = modules[currentModule].lessons[currentLesson].title
+    const player = useAppSelector(state => state.player)
+
+    const module = player.course?.modules[player.currentModuleIndex]
+
+    const moduleTitle = module?.title
+    const lessonTitle = module?.lessons[player.currentLessonIndex].title
     return (
         <div className="flex flex-col gap-1">
             <h1 className="text-2xl font-bold">{lessonTitle}</h1>

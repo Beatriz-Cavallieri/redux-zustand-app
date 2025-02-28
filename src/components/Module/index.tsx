@@ -12,8 +12,8 @@ interface ModuleProps {
 }
 
 const Module = ({ moduleIndex, title, amountOfLessons }: ModuleProps) => {
-    const lessons = useAppSelector(state => state.player.modules[moduleIndex].lessons)
-    const { currentLesson, currentModule } = useAppSelector(state => state.player)
+    const lessons = useAppSelector(state => state.player.course?.modules[moduleIndex].lessons)
+    const { currentLessonIndex, currentModuleIndex } = useAppSelector(state => state.player)
 
     const dispatch = useDispatch()
 
@@ -37,13 +37,13 @@ const Module = ({ moduleIndex, title, amountOfLessons }: ModuleProps) => {
             </CollapsibleTrigger>
             <CollapsibleContent>
                 <nav className="relative flex flex-col gap-4 p-6">
-                    {lessons.map((lesson, index) => (
+                    {lessons && lessons.map((lesson, index) => (
                         <Lesson
                             key={index}
                             title={lesson.title}
                             duration={lesson.duration}
                             onPlay={() => onPlay(index)}
-                            isCurrent={moduleIndex == currentModule && index == currentLesson} />
+                            isCurrent={moduleIndex == currentModuleIndex && index == currentLessonIndex} />
                     )
                     )}
                 </nav>

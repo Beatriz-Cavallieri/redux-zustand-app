@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux"
 import { next } from "../../store/slices/player"
 
 const Video = () => {
-    const { modules, currentLesson, currentModule } = useAppSelector(state => state.player)
+    const { course, currentLessonIndex, currentModuleIndex } = useAppSelector(state => state.player)
     const dispatch = useDispatch()
 
-    const id = modules[currentModule].lessons[currentLesson].id
+    const id = course?.modules[currentModuleIndex].lessons[currentLessonIndex].id
 
     return (
         <div className="flex-1">

@@ -4,11 +4,22 @@ import Video from "../../components/Video"
 import Module from "../../components/Module"
 import { useAppSelector, useCurrentLesson } from "../../store/hooks"
 import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { api } from "../../lib/axios"
+import { start } from "../../store/slices/player"
 
 const Player = () => {
     const modules = useAppSelector(state => state.player.course?.modules)
 
     const { currentLesson } = useCurrentLesson()
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        api.get('/courses/1').then(response => {
+          dispatch(start(response.data))
+        })
+      }, [])
 
     useEffect(() => {
       document.title = `Assistindo: ${currentLesson?.title}`
@@ -46,3 +57,4 @@ const Player = () => {
 }
 
 export default Player
+

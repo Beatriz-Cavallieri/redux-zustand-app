@@ -7,6 +7,7 @@ const Video = () => {
     const dispatch = useDispatch()
     const { currentLesson } = useCurrentLesson()
 
+    if (!currentLesson) return null
     return (
         <div className="flex-1">
             <div className="w-full bg-zinc-950 aspect-video">

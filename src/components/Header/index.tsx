@@ -3,6 +3,10 @@ import { useCurrentLesson } from "../../store/hooks"
 const Header = () => {
     const {currentLesson, currentModule} = useCurrentLesson()
 
+    if (!currentModule || !currentLesson) {
+        return null
+      }
+
     return (
         <div className="flex flex-col gap-1">
             <h1 className="text-2xl font-bold">{currentLesson?.title}</h1>
